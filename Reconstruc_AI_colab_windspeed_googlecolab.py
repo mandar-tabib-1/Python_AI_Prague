@@ -136,7 +136,7 @@ def main():
         print("THERE ARE Regions that exhibhit TURBULENCE higher than the specified absolute threshold. These are as follows:")
         print("locations_at_high_turbulence")
         columns_to_exclude = ['X', 'Y', 'Z','Velocity_X_', 'Velocity_Y_', 'Velocity_Z_']
-        new_column_order = ['latitude', 'longitude', 'tke', 'Normalized_turbulence'] #'Velocity_mag','Normalized_Velocity'
+        new_column_order = ['latitude', 'longitude', 'Z','tke', 'Normalized_turbulence'] #'Velocity_mag','Normalized_Velocity'
          #.drop(columns=columns_to_exclude)
         print(locations_at_high_turbulence[new_column_order])
         # Save DataFrame to a CSV file at a specified path
@@ -152,7 +152,7 @@ def main():
         print(" ")
         print("THERE ARE Regions that exhibhit WIND MAGNITUDE that is higher than the specified absolute threshold. These are as follows:")
         print("locations_at_high_wind_magnitude")
-        new_column_order1 = ['latitude', 'longitude', 'Velocity_mag','Normalized_Velocity']
+        new_column_order1 = ['latitude', 'longitude', 'Z','Velocity_mag','Normalized_Velocity']
         print(locations_at_high_wind_magnitude[new_column_order1])  
         
         locations_at_high_wind_magnitude[new_column_order1].to_csv(file_path1, index=False)  # index=False to avoid saving the row indices 

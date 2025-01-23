@@ -1,0 +1,43 @@
+#Using Untested C# using UnityWebRequest to send a POST request to the python API. (provided by chatgpt).
+using System.Collections;
+using UnityEngine;
+using UnityEngine.Networking;
+
+public class WindDataAPI : MonoBehaviour
+{
+    string apiUrl = "http://127.0.0.1:8000/process_wind_data";
+
+    IEnumerator CallPythonAPI()
+    {
+        // Create the data to send
+        var data = new
+        {
+            date_and_hrs_only = "2025-01-23 09:00:00", #YYYY-MM-DD HR:min:sec format and important: this data has to be two days in the future, otehrwise No forecast available message.
+            threshold_absolute_windspeed_mps = 15.5f,
+            threshold_absolute_turbulence_m2ps2 = 1.2f
+        };
+
+        // Convert data to JSON
+        string jsonData = JsonUtility.ToJson(data);
+
+        // Send POST request
+        UnityWebRequest request = UnityWebRequest.Post(apiUrl, jsonData);
+        request.SetRequestHeader("Content-Type", "application/json");
+
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            Debug.Log("Response: " + request.downloadHandler.text);
+        }
+        else
+        {
+            Debug.LogError("Error: " + request.error);
+        }
+    }
+
+    void Start()
+    {
+        StartCoroutine(CallPythonAPI());
+    }
+}

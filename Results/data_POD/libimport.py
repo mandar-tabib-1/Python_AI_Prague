@@ -151,7 +151,7 @@ def reconstruct_AI_for_winddirection(variable,wind_direc,fn,vectorU=True):
     Phit=PODdata['tbasis']
     tke_mean=PODdata['tmean']   
      
-    result_sample=vtki.read('Utest_sample.vtk') 
+    result_sample=vtki.read(fn+'/Utest_sample.vtk') 
     
     for wind_dir in [wind_direc]:     
         
@@ -338,7 +338,7 @@ def reconstruct_AI_for_winddirection_windspeed(variable,wind_direc,windspeed,fn,
     Phit=PODdata['tbasis']
     tke_mean=PODdata['tmean']    
     
-    result_sample=vtki.read('Utest_sample.vtk')
+    result_sample=vtki.read(fn+'/Utest_sample.vtk')
 
     for wind_dir in [wind_direc]:
         for wind_spee in [windspeed]:     
@@ -924,7 +924,7 @@ def reconstruct_AI_for_winddirection_windspeed(variable,wind_direc,windspeed,fn,
     Phit=PODdata['tbasis']
     tke_mean=PODdata['tmean']    
     
-    result_sample=vtki.read('Utest_sample.vtk')
+    result_sample=vtki.read(fn+'/Utest_sample.vtk')
 
     for wind_dir in [wind_direc]:
         for wind_spee in [windspeed]:     

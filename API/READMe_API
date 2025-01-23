@@ -1,0 +1,21 @@
+#How python module was changed to API for usability in Unity Game Engine. 
+1. Git clone this repository
+2. Change director: cd AI_Prague_Zip\ROM_Prague-main\API
+3. Run API from above directory after  :   python .\run_api.py                 #can use powershell terminal in VS code to run this. 
+4. Test API or Use your Unity game engine 
+    4.1  For Checking use test_api.py . But First provide the right data in the file.   
+    data = {
+    "date_and_hrs_only": "2025-01-23 09:00:00", #YYYY-MM-DD HR:min:sec format and important: this data has to be two days in the future. Othewise No forecast available message. 
+    "threshold_absolute_windspeed_mps": 4,
+    "threshold_absolute_turbulence_m2ps2": 4
+           }
+    4.2. To test Run : python .\test_api.py 
+
+#Notes for self: API allows two applications to communicate. APIs usually work by receiving a request (e.g., via HTTP) and sending back a response.Here, I used FAStAPI combined with pydantic. Steps involved to make an API are. 
+1. Refactor my Python module as a function: so that can accept arguments as function parameters (programmatically) instead of via the command line. I encapsulated the main functionality into module (which was a python module) into a function.The function process_wind_data can be found in the file name API_AI_Wwind_Prague.py module. 
+2. Created an API Using FastAPI script. In this script, we import and expose the function as an endpoint (entrypoint) using API. This would allow any user/Unity to send the three arguments (--date_and_hrs_only, --threshold_absolute_windspeed_mps, and --threshold_absolute_turbulence_m2ps2) via an HTTP POST request. It involved importing main function and creating entry-point with @app.post("/process_wind_data"). We also define data for incoming requests using a class and validate the data against the. The unity Unity or user can send a POST request to function on web-sever http://127.0.0.1:8000/process_wind_data with the required data. FastAPI is a modern, high-performance, and robust Python web framework used for building REST APIs.  FastAPI doesn't contain any built-in development server. Hence we need Uvicorn. It implements ASGI standards and is lightning fast.
+3. Run API: So, User Runs the created API script using uvicorn. Run the API using uvicorn, a server for running FastAPI applications.  This launches the FastAPI server, making it accessible at http://127.0.0.1:8000 
+Create a script to automate this process:
+python run_api.py
+4. Test the API using test_api.py. To test the API, create another script that sends a POST request to the /process_wind_data endpoint. It has url to endpoint, the data to be sent. python test_api.py  . An endpoint in an API is a specific URL or URI (Uniform Resource Identifier) that is used to access a particular resource or perform a specific function. Each endpoint represents one "entry point" into the API and defines what functionality or data the API provides at that location.
+Source: https://chatgpt.com/c/6790aa6d-69ec-800a-b2ef-8660bb882114  

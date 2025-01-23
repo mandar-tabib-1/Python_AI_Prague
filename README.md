@@ -1,3 +1,6 @@
+There are two READMe files. One this way for python module and another is inside the API folder for running the API version of module. 
+
+For python module:
 In order to run the AI wind model to obtain wind and turbulence in urban city segment as a result of building-induced turbulence for drone operations.
 Read all the points below and then follow it:
 
